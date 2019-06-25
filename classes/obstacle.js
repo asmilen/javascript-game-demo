@@ -22,19 +22,18 @@ function Obstacle() {
     };
 
     this.collisionDetection = function () {
-        if(this.x > canvas.width || this.x < 0) {
+        if (this.x > canvas.width || this.x < 0 || this.y + this.height > canvas.height) {
             this.status = false;
-            return;
+            return 1;
         }
-        if(this.y + this.height > canvas.height - ship.height) {
-            if(this.x > ship.x && this.x < ship.x + ship.width) {
-                lives--;
-                if(!lives) {
-                    alert("GAME OVER");
-                    document.location.reload();
-                }
-                this.status = false;
+
+        if (this.y + this.height > canvas.height - ship.height && (this.x > ship.x && this.x < ship.x + ship.width || ship.x >= this.x && ship.x < this.x + this.width)) {
+            lives--;
+            if (!lives) {
+                alert("GAME OVER");
+                document.location.reload();
             }
+            this.status = false;
         }
     }
 }
