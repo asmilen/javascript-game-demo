@@ -24,7 +24,7 @@ function Obstacle() {
     this.collisionDetection = function () {
         if (this.x > canvas.width || this.x < 0 || this.y + this.height > canvas.height) {
             this.status = false;
-            return;
+            return 1;
         }
 
         if (this.y + this.height > canvas.height - ship.height && (this.x > ship.x && this.x < ship.x + ship.width || ship.x >= this.x && ship.x < this.x + this.width)) {
